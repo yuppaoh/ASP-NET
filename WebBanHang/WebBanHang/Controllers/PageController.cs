@@ -6,23 +6,30 @@ using System.Web.Mvc;
 
 namespace WebBanHang.Controllers
 {
-    public class HomeController : Controller
+    public class PageController : Controller
     {
         public ActionResult Index()
         {
             return View();
         }
 
-        public ActionResult About()
+        public ActionResult GioiThieu()
         {
             ViewBag.Message = "Your application description page.";
 
             return View();
         }
 
-        public ActionResult Contact()
+        public ActionResult LienHe()
         {
             ViewBag.Message = "Your contact page.";
+
+            return View();
+        }
+
+        public ActionResult DangNhap()
+        {
+            ViewBag.Message = "Trang dang nhap.";
 
             return View();
         }
