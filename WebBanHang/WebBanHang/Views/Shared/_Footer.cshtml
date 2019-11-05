@@ -1,10 +1,27 @@
 ﻿<footer class="footer mt-auto py-3">
-    <div class="container">
-        <span>Bản quyền © bởi <a href="https://nentang.vn">Nền Tảng</a> - 2019.</span>
-        <span class="text-muted">Hành trang tới Tương lai</span>
 
-        <p class="float-right">
-            <a href="#">Về đầu trang</a>
-        </p>
-    </div>
+    
+        <div class="container">
+            
+            
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item active">
+                        <span>Bản quyền © bởi <a href="https://nentang.vn">Nền Tảng</a> - 2019.</span>
+                        <span class="text-muted">Hành trang tới Tương lai</span>
+                    </li>
+                    <li class="nav-item">
+                        @Html.RouteLink("Chinh Sach", "page.chinh-sach", null, new { @class = "nav-link" })
+                    </li>
+                    <li class="nav-item">
+                        @Html.RouteLink("Dieu khoan", "page.dieu-khoan", null, new { @class = "nav-link" })
+                    </li>
+                    <li class="nav-item">
+                        <a href="#">Về đầu trang</a>
+                    </li>
+                </ul>
+
+           
+
+        </div>
+   
 </footer>

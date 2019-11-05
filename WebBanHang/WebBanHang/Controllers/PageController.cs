@@ -13,6 +13,13 @@ namespace WebBanHang.Controllers
             return View();
         }
 
+        public ActionResult SanPham()
+        {
+            ViewBag.Message = "Trang San pham";
+
+            return View();
+        }
+
         public ActionResult GioiThieu()
         {
             ViewBag.Message = "Your application description page.";
@@ -30,6 +37,27 @@ namespace WebBanHang.Controllers
         public ActionResult DangNhap()
         {
             ViewBag.Message = "Trang dang nhap.";
+
+            return View();
+        }
+
+        public ActionResult DangKy()
+        {
+            ViewBag.Message = "Trang dang nhap.";
+
+            return View();
+        }
+
+        public ActionResult ChinhSach()
+        {
+            ViewBag.Message = "Chinh sach ban hang";
+
+            return View();
+        }
+
+        public ActionResult DieuKhoan()
+        {
+            ViewBag.Message = "Dieu khoan";
 
             return View();
         }
