@@ -1,96 +1,145 @@
-﻿<div class="row justify-content-center">
-    <div class="col-md-6">
-        <div class="card mx-4">
-            <div class="card-body p-4">
-                <h1>Đăng ký</h1>
-                <p class="text-muted">Tạo tài khoản</p>
-                <div class="input-group mb-3">
-                    <div class="input-group-prepend">
-                        <span class="input-group-text">
-                            <i class="fa fa-user"></i>
-                        </span>
+﻿<div style="height: 50px"></div>
+
+<form name="frmDangKy" method="post" action="/Account/XuLyDangKy" enctype="multipart/form-data">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card mx-4">
+                <div class="card-body p-4">
+                    <h1>Đăng ký</h1>
+                    <p class="text-muted">Tạo tài khoản</p>
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">
+                                <i class="fa fa-user"></i>
+                            </span>
+                        </div>
+                        <input class="form-control" type="text" placeholder="last_name" name="last_name">
                     </div>
-                    <input class="form-control" type="text" placeholder="Tên tải khoản" name="kh_tendangnhap">
-                </div>
-                <div class="input-group mb-3">
-                    <div class="input-group-prepend">
-                        <span class="input-group-text">
-                            <i class="fa fa-user"></i>
-                        </span>
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">
+                                <i class="fa fa-user"></i>
+                            </span>
+                        </div>
+                        <input class="form-control" type="text" placeholder="first_name" name="first_name">
                     </div>
-                    <input class="form-control" type="password" placeholder="Mật khẩu" name="kh_matkhau">
-                </div>
-                <div class="input-group mb-3">
-                    <div class="input-group-prepend">
-                        <span class="input-group-text">
-                            <i class="fa fa-user"></i>
-                        </span>
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">
+                                <i class="fa fa-user"></i>
+                            </span>
+                        </div>
+                        <input class="form-control" type="email" placeholder="email" name="email">
                     </div>
-                    <input class="form-control" type="text" placeholder="Họ tên" name="kh_ten">
-                </div>
-                <div class="input-group mb-3">
-                    <div class="input-group-prepend">
-                        <span class="input-group-text">
-                            <i class="fa fa-user"></i>
-                        </span>
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">
+                                <i class="fa fa-user"></i>
+                            </span>
+                        </div>
+                        <input class="form-control" type="password" placeholder="password" name="password">
                     </div>
-                    <select name="kh_gioitinh" class="form-control">
-                        <option value="0">Nam</option>
-                        <option value="1">Nữ</option>
-                    </select>
-                </div>
-                <div class="input-group mb-3">
-                    <div class="input-group-prepend">
-                        <span class="input-group-text">
-                            <i class="fa fa-user"></i>
-                        </span>
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">
+                                <i class="fa fa-user"></i>
+                            </span>
+                        </div>
+                        <input class="form-control" type="file" placeholder="avatar" name="avatar">
                     </div>
-                    <input class="form-control" type="text" placeholder="Địa chỉ" name="kh_diachi">
-                </div>
-                <div class="input-group mb-3">
-                    <div class="input-group-prepend">
-                        <span class="input-group-text">
-                            <i class="fa fa-user"></i>
-                        </span>
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">
+                                <i class="fa fa-user"></i>
+                            </span>
+                        </div>
+                        <input class="form-control" type="text" placeholder="job_title" name="job_title">
                     </div>
-                    <input class="form-control" type="text" placeholder="Điện thoại" name="kh_dienthoai">
-                </div>
-                <div class="input-group mb-3">
-                    <div class="input-group-prepend">
-                        <span class="input-group-text">
-                            <i class="fa fa-user"></i>
-                        </span>
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">
+                                <i class="fa fa-user"></i>
+                            </span>
+                        </div>
+                        <input class="form-control" type="text" placeholder="department" name="department">
                     </div>
-                    <input class="form-control" type="email" placeholder="Email" name="kh_email">
-                </div>
-                <div class="input-group mb-3">
-                    <div class="input-group-prepend">
-                        <span class="input-group-text">
-                            <i class="fa fa-user"></i>
-                        </span>
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">
+                                <i class="fa fa-user"></i>
+                            </span>
+                        </div>
+                        <input class="form-control" type="text" placeholder="manager_id" name="manager_id">
                     </div>
-                    <input class="form-control" type="text" placeholder="Ngày sinh" name="kh_ngaysinh">
-                    <input class="form-control" type="text" placeholder="Tháng sinh" name="kh_thangsinh">
-                    <input class="form-control" type="text" placeholder="Năm sinh" name="kh_namsinh">
-                </div>
-                <div class="input-group mb-3">
-                    <div class="input-group-prepend">
-                        <span class="input-group-text">
-                            <i class="fa fa-user"></i>
-                        </span>
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">
+                                <i class="fa fa-user"></i>
+                            </span>
+                        </div>
+                        <input class="form-control" type="text" placeholder="phone" name="phone">
                     </div>
-                    <input class="form-control" type="text" placeholder="CMND" name="kh_cmnd">
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">
+                                <i class="fa fa-user"></i>
+                            </span>
+                        </div>
+                        <input class="form-control" type="text" placeholder="address1" name="address1">
+                    </div>
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">
+                                <i class="fa fa-user"></i>
+                            </span>
+                        </div>
+                        <input class="form-control" type="text" placeholder="address2" name="address2">
+                    </div>
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">
+                                <i class="fa fa-user"></i>
+                            </span>
+                        </div>
+                        <input class="form-control" type="text" placeholder="city" name="city">
+                    </div>
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">
+                                <i class="fa fa-user"></i>
+                            </span>
+                        </div>
+                        <input class="form-control" type="text" placeholder="state" name="state">
+                    </div>
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">
+                                <i class="fa fa-user"></i>
+                            </span>
+                        </div>
+                        <input class="form-control" type="text" placeholder="postal_code" name="postal_code">
+                    </div>
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">
+                                <i class="fa fa-user"></i>
+                            </span>
+                        </div>
+                        <input class="form-control" type="text" placeholder="country" name="country">
+                    </div>
+
+                    
+                    <button class="btn btn-block btn-success" name="btnDangKy">Tạo tài khoản</button>
                 </div>
-                <button class="btn btn-block btn-success" name="btnDangKy">Tạo tài khoản</button>
-            </div>
-            <div class="card-footer p-4">
-                <div class="row">
-                    <div class="col-12">
-                        <center>Nếu bạn đã có Tài khoản, xin mời Đăng nhập</center>
-                        <a class="btn btn-primary form-control" href="/php/twig/frontend/pages/login">Đăng nhập</a>
+                <div class="card-footer p-4">
+                    <div class="row">
+                        <div class="col-12">
+                            <center>Nếu bạn đã có Tài khoản, xin mời Đăng nhập</center>
+                            <a class="btn btn-primary form-control" href="/php/twig/frontend/pages/login">Đăng nhập</a>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
+</form>

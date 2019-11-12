@@ -74,3 +74,7 @@ E:\MyProgram\Aptech\Subject\32_ASP\ASP-NET\WebBanHang\WebBanHang\obj\Debug\WebBa
 E:\MyProgram\Aptech\Subject\32_ASP\ASP-NET\WebBanHang\WebBanHang\obj\Debug\WebBanHang.csproj.CopyComplete
 E:\MyProgram\Aptech\Subject\32_ASP\ASP-NET\WebBanHang\WebBanHang\obj\Debug\WebBanHang.dll
 E:\MyProgram\Aptech\Subject\32_ASP\ASP-NET\WebBanHang\WebBanHang\obj\Debug\WebBanHang.pdb
+E:\MyProgram\Aptech\Subject\32_ASP\ASP-NET\WebBanHang\WebBanHang\bin\EntityFramework.dll
+E:\MyProgram\Aptech\Subject\32_ASP\ASP-NET\WebBanHang\WebBanHang\bin\EntityFramework.SqlServer.dll
+E:\MyProgram\Aptech\Subject\32_ASP\ASP-NET\WebBanHang\WebBanHang\bin\EntityFramework.xml
+E:\MyProgram\Aptech\Subject\32_ASP\ASP-NET\WebBanHang\WebBanHang\bin\EntityFramework.SqlServer.xml

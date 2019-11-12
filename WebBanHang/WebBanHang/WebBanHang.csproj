@@ -45,10 +45,18 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -120,7 +128,39 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\FileController.cs" />
     <Compile Include="Controllers\PageController.cs" />
+    <Compile Include="EF\customer.cs">
+      <DependentUpon>QuanLyBanHangEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\employee.cs">
+      <DependentUpon>QuanLyBanHangEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\order.cs">
+      <DependentUpon>QuanLyBanHangEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\order_details.cs">
+      <DependentUpon>QuanLyBanHangEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\product.cs">
+      <DependentUpon>QuanLyBanHangEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\QuanLyBanHangEntities.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>QuanLyBanHangEntities.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\QuanLyBanHangEntities.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>QuanLyBanHangEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\QuanLyBanHangEntities.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>QuanLyBanHangEntities.edmx</DependentUpon>
+    </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -137,12 +177,29 @@
     <Content Include="Content\img\slider-1.jpg" />
     <Content Include="Content\img\slider-2.jpg" />
     <Content Include="Content\img\slider-3.jpg" />
+    <Content Include="EF\QuanLyBanHangEntities.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>QuanLyBanHangEntities.Context.cs</LastGenOutput>
+      <DependentUpon>QuanLyBanHangEntities.edmx</DependentUpon>
+    </Content>
+    <Content Include="EF\QuanLyBanHangEntities.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>QuanLyBanHangEntities.edmx</DependentUpon>
+      <LastGenOutput>QuanLyBanHangEntities.cs</LastGenOutput>
+    </Content>
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <EntityDeploy Include="EF\QuanLyBanHangEntities.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>QuanLyBanHangEntities.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="EF\QuanLyBanHangEntities.edmx.diagram">
+      <DependentUpon>QuanLyBanHangEntities.edmx</DependentUpon>
+    </Content>
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
@@ -180,7 +237,11 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="DocumentFiles\" />
     <Folder Include="Models\" />
+    <Folder Include="UploadedFiles\" />
+    <Folder Include="Views\Account\" />
+    <Folder Include="Views\File\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
@@ -194,6 +255,9 @@
     <None Include="packages.config" />
     <Content Include="Scripts\jquery-3.3.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.3.1.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
