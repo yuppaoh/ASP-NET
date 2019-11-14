@@ -9,11 +9,11 @@
         <EntityTypeShape EntityType="WebBanHangModel.employee" Width="1.5" PointX="0.75" PointY="6.25" IsExpanded="true" />
         <EntityTypeShape EntityType="WebBanHangModel.order_details" Width="1.5" PointX="5.25" PointY="2" IsExpanded="true" />
         <EntityTypeShape EntityType="WebBanHangModel.order" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
-        <EntityTypeShape EntityType="WebBanHangModel.product" Width="1.5" PointX="3" PointY="6.625" IsExpanded="true" />
         <AssociationConnector Association="WebBanHangModel.fk_orders__customers" ManuallyRouted="false" />
         <AssociationConnector Association="WebBanHangModel.fk_orders__employees" ManuallyRouted="false" />
         <AssociationConnector Association="WebBanHangModel.fk_order_details__orders" ManuallyRouted="false" />
-        <AssociationConnector Association="WebBanHangModel.fk_order_details__products" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="WebBanHangModel.product" Width="1.5" PointX="5.375" PointY="6" />
+        <AssociationConnector Association="WebBanHangModel.fk_order_details__products" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

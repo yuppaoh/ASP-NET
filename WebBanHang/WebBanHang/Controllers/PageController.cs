@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using WebBanHang.EF;
 
 namespace WebBanHang.Controllers
 {
@@ -10,6 +11,17 @@ namespace WebBanHang.Controllers
     {
         public ActionResult Index()
         {
+            List<product> lstProduct = new List<product>();
+
+            // Lấy dữ liệu danh sách sản phẩm
+            using (WebBanHangEntities context = new WebBanHangEntities()) // tương đương câu lệch sql: select * from products
+            {
+                lstProduct = context.products.ToList();
+            }
+
+            // Truyền dữ liệu từ Controller -> View thông qua ViewBag
+            ViewBag.DanhSachSanPham = lstProduct;
+
             return View();
         }
 
