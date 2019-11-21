@@ -65,6 +65,27 @@ namespace WebBanHang
               defaults: new { controller = "Page", action = "DieuKhoan" }
            );
 
+            routes.MapRoute(
+              name: "product.detail",
+              url: "product-detail",
+              defaults: new { controller = "Product", action = "ProductDetail" }
+           );
+
+            // BackEnd
+
+            routes.MapRoute(
+              name: "admin.page.dashboard",
+              url: "admin/dashboard",
+              defaults: new { controller = "Dashboard", action = "Index" },
+              namespaces: new string[] {"WebBanHang.Controller.Backend"}
+            );
+
+            routes.MapRoute(
+              name: "admin.products.index",
+              url: "admin/products",
+              defaults: new { controller = "Products", action = "Index" },
+              namespaces: new string[] { "WebBanHang.Controller.Backend" }
+            );
 
 
 

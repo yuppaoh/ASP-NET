@@ -1,0 +1,42 @@
+﻿<nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+    <div class="container">
+        <a class="navbar-brand" href="https://nentang.vn">Nền tảng</a>
+        <div class="navbar-collapse collapse" id="navbarCollapse" style="">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    @Html.RouteLink("Trang chu", "page.trang-chu", null, new { @class = "nav-link" })
+                </li>
+                <li class="nav-item">
+                    @Html.RouteLink("San pham", "page.san-pham", null, new { @class = "nav-link" })
+                </li>
+                <li class="nav-item">
+                    @Html.RouteLink("Gioi thieu", "page.gioi-thieu", null, new { @class = "nav-link" })
+                </li>
+                <li class="nav-item">
+                    @Html.RouteLink("Lien He", "page.lien-he", null, new { @class = "nav-link" })
+                </li>
+            </ul>
+            <form class="form-inline mt-2 mt-md-0" method="get" action="/php/twig/frontend/pages/timkiem">
+                <input class="form-control mr-sm-2" type="text" placeholder="Tìm kiếm" aria-label="Search" name="keyword_tensanpham">
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Tìm kiếm</button>
+            </form>
+        </div>
+        <ul class="navbar-nav px-3">
+            <li class="nav-item text-nowrap">
+                <a class="nav-link" href="/php/twig/frontend/thanhtoan/giohang">Giỏ hàng</a>
+            </li>
+            <li class="nav-item text-nowrap">
+                <!-- Nếu chưa đăng nhập thì hiển thị nút Đăng nhập -->
+                @Html.RouteLink("Dang nhap", "page.dang-nhap", null, new { @class = "nav-link" })
+            </li>
+            <li class="nav-item text-nowrap">
+                @Html.RouteLink("Dang ky", "page.dang-ky", null, new { @class = "nav-link" })
+            </li>
+            <li class="nav-item text-nowrap">
+                @Html.RouteLink("Chinh Sach", "page.chinh-sach", null, new { @class = "nav-link" })
+            </li>
+        </ul>
+    </div>
+</nav>
+
+

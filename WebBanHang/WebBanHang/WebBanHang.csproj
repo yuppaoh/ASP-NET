@@ -129,8 +129,11 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\Backend\DashboardController.cs" />
+    <Compile Include="Controllers\Backend\ProductsController.cs" />
     <Compile Include="Controllers\FileController.cs" />
     <Compile Include="Controllers\PageController.cs" />
+    <Compile Include="Controllers\ProductController.cs" />
     <Compile Include="EF\customer.cs">
       <DependentUpon>QuanLyBanHangEntities.tt</DependentUpon>
     </Compile>
@@ -180,6 +183,7 @@
     <Content Include="Content\img\slider-1.jpg" />
     <Content Include="Content\img\slider-2.jpg" />
     <Content Include="Content\img\slider-3.jpg" />
+    <Content Include="Content\productdetail.css" />
     <Content Include="EF\QuanLyBanHangEntities.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>QuanLyBanHangEntities.Context.cs</LastGenOutput>
@@ -239,12 +243,24 @@
     <Content Include="Views\Page\DangKy.cshtml" />
     <Content Include="Views\Page\ChinhSach.cshtml" />
     <Content Include="Views\Page\DieuKhoan.cshtml" />
+    <Content Include="Views\Product\ProductDetail.cshtml" />
+    <Content Include="Views\Backend\Dashboard\Index.cshtml" />
+    <Content Include="Views\Backend\Shared\_Layout.cshtml" />
+    <Content Include="Views\Backend\Shared\_Footer.cshtml" />
+    <Content Include="Views\Backend\Shared\_HeaderNavBar.cshtml" />
+    <Content Include="Views\Backend\Shared\_Sidebar.cshtml" />
+    <Content Include="Views\Backend\Products\Create.cshtml" />
+    <Content Include="Views\Backend\Products\Delete.cshtml" />
+    <Content Include="Views\Backend\Products\Details.cshtml" />
+    <Content Include="Views\Backend\Products\Edit.cshtml" />
+    <Content Include="Views\Backend\Products\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="DocumentFiles\" />
     <Folder Include="Models\" />
     <Folder Include="Views\Account\" />
+    <Folder Include="Views\Dashboard\" />
     <Folder Include="Views\File\" />
   </ItemGroup>
   <ItemGroup>
