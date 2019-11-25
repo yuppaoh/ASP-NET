@@ -8,22 +8,23 @@
 <h2>Create</h2>
 
 
-@using (Html.BeginForm()) 
+@using (Html.BeginForm("Create","Products", FormMethod.Post, new { enctype = "multipart/form-data"})) //Create là action, Products là controll
 {
-    @Html.AntiForgeryToken()
-    
-    <div class="form-horizontal">
-        <h4>product</h4>
-        <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    @Html.AntiForgeryToken() //chống mạo danh
+
+<div class="form-horizontal">
+    <h4>product</h4>
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
         <div class="form-group">
-            @Html.LabelFor(model => model.product_code, htmlAttributes: new { @class = "control-label col-md-2" })
+            <label class="control-label col-md-2">Mã sản phẩm</label>
             <div class="col-md-10">
-                @Html.EditorFor(model => model.product_code, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.product_code, "", new { @class = "text-danger" })
+                <input type="text" name="product-code" id="product-code" class="form-control" />
             </div>
         </div>
 
+               
         <div class="form-group">
             @Html.LabelFor(model => model.product_name, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
@@ -105,25 +106,24 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.image, htmlAttributes: new { @class = "control-label col-md-2" })
+            <label class="control-label col-md-2">Uploade san pham</label>
             <div class="col-md-10">
-                @Html.EditorFor(model => model.image, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.image, "", new { @class = "text-danger" })
+                <input type="file" name="image" id="image" />
             </div>
         </div>
 
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Lưu sản phẩm" class="btn btn-default btn-primary" class="form-control" />
+                </div>
             </div>
         </div>
+    }
+
+    <div>
+        @Html.ActionLink("Back to List", "Index")
     </div>
-}
 
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>
-
-@section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
-}
+    @section Scripts {
+        @Scripts.Render("~/bundles/jqueryval")
+    }

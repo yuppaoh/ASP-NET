@@ -87,6 +87,14 @@ namespace WebBanHang
               namespaces: new string[] { "WebBanHang.Controller.Backend" }
             );
 
+            // route Them moi san pham
+            // URL: /Admin/products/create
+            routes.MapRoute(
+              name: "admin.products.create",
+              url: "admin/products/create",
+              defaults: new { controller = "Products", action = "Create" },
+              namespaces: new string[] { "WebBanHang.Controller.Backend" }
+            );
 
 
 

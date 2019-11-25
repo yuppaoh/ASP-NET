@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Web;
@@ -38,7 +39,7 @@ namespace WebBanHang.Controllers.Backend
         // GET: Products/Create
         public ActionResult Create()
         {
-            return View();
+            return View("~/Views/Backend/Products/Create.cshtml");
         }
 
         // POST: Products/Create
@@ -46,10 +47,42 @@ namespace WebBanHang.Controllers.Backend
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "id,product_code,product_name,description,standard_cost,list_price,target_level,reorder_level,minimum_reorder_quantity,quantity_per_unit,discontinued,category,image")] product product)
+        public ActionResult Create(
+            [Bind(Include =
+            "id,product_code,product_name,description,standard_cost,list_price,target_level,reorder_level," +
+            "minimum_reorder_quantity,quantity_per_unit,discontinued,category,image")] product product,
+            HttpPostedFileBase image)
         {
             if (ModelState.IsValid)
             {
+                //Xử lý file: lưu file vào thư mục UploadedFiles
+                string _FileName = "";
+                
+                // di chuyển file vào thư mục mong muốn
+                if (image.ContentLength > 0)
+                {
+                    _FileName = Path.GetFileName(image.FileName);
+                    string _FileNameExtension = Path.GetExtension(image.FileName);
+                    if ((_FileNameExtension == ".png" || _FileNameExtension == ".jpg"
+                        || _FileNameExtension == ".jpeg" || _FileNameExtension == ".svg"
+                        || _FileNameExtension == ".xlsx" || _FileNameExtension == ".docx"
+                        ) == false)
+                    {
+                        return View(String.Format("File có đuôi {0} không được chấp nhận, vui lòng kiểm tra lại", _FileNameExtension));
+                    }
+
+                    string uploadFolderPath = Server.MapPath("~/UploadedFiles");
+                    if (Directory.Exists(uploadFolderPath) == false)
+                    {
+                        Directory.CreateDirectory(uploadFolderPath);
+                    }
+
+                    string _Path = Path.Combine(uploadFolderPath, _FileName);
+                    image.SaveAs(_Path);
+                }
+
+                //lưu dữ liệu
+                product.image = image.FileName; //lưu tên file để sau này ghép lại với đường dấn, hiện ra trên trang index của product
                 db.products.Add(product);
                 db.SaveChanges();
                 return RedirectToAction("Index");
