@@ -57,9 +57,9 @@ namespace WebBanHang.Controllers.Backend
             {
                 //Xử lý file: lưu file vào thư mục UploadedFiles
                 string _FileName = "";
-                
+
                 // di chuyển file vào thư mục mong muốn
-                if (image.ContentLength > 0)
+                if (image != null && image.ContentLength > 0)
                 {
                     _FileName = Path.GetFileName(image.FileName);
                     string _FileNameExtension = Path.GetExtension(image.FileName);
@@ -79,10 +79,12 @@ namespace WebBanHang.Controllers.Backend
 
                     string _Path = Path.Combine(uploadFolderPath, _FileName);
                     image.SaveAs(_Path);
+
+                    product.image = image.FileName; //lưu tên file để sau này ghép lại với đường dấn, hiện ra trên trang index của product
                 }
 
                 //lưu dữ liệu
-                product.image = image.FileName; //lưu tên file để sau này ghép lại với đường dấn, hiện ra trên trang index của product
+                
                 db.products.Add(product);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -103,7 +105,8 @@ namespace WebBanHang.Controllers.Backend
             {
                 return HttpNotFound();
             }
-            return View(product);
+            ViewBag.sanpham = product;
+            return View("~/Views/Backend/Products/Edit.cshtml", product);
         }
 
         // POST: Products/Edit/5
@@ -111,10 +114,60 @@ namespace WebBanHang.Controllers.Backend
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "id,product_code,product_name,description,standard_cost,list_price,target_level,reorder_level,minimum_reorder_quantity,quantity_per_unit,discontinued,category,image")] product product)
+        public ActionResult Edit([Bind(Include = "id,product_code,product_name,description,standard_cost," +
+            "list_price,target_level,reorder_level,minimum_reorder_quantity,quantity_per_unit,discontinued," +
+            "category,image")] product product, string image_oldFile, HttpPostedFileBase image) // HttpPost... để tạo biến image, sau này dùng ở dòng 123 - if (image == null)  
         {
             if (ModelState.IsValid)
             {
+                string uploadFolderPath = Server.MapPath("~/UploadedFiles");
+
+                if (image == null) // Nếu không cập nhật file (không chọn file)
+                {
+                    // Giữ nguyên ảnh củ
+                    product.image = image_oldFile;
+                }
+                else // Nếu chọn file ảnh mới
+                {
+                    // 1. Xóa file ảnh củ
+                    string filePathAnhCu = Path.Combine(uploadFolderPath, (product.image == null?"":product.image));
+                    if (System.IO.File.Exists(filePathAnhCu))
+                    {
+                        System.IO.File.Delete(filePathAnhCu);
+                    }
+
+                    // 2. upload ảnh mới
+
+                    string _FileName = "";
+
+                    // di chuyển file vào thư mục mong muốn
+                    if (image.ContentLength > 0)
+                    {
+                        _FileName = Path.GetFileName(image.FileName);
+                        string _FileNameExtension = Path.GetExtension(image.FileName);
+                        if ((_FileNameExtension == ".png" || _FileNameExtension == ".jpg"
+                            || _FileNameExtension == ".jpeg" || _FileNameExtension == ".svg"
+                            || _FileNameExtension == ".xlsx" || _FileNameExtension == ".docx"
+                            ) == false)
+                        {
+                            return View(String.Format("File có đuôi {0} không được chấp nhận, vui lòng kiểm tra lại", _FileNameExtension));
+                        }
+
+                        
+                        if (Directory.Exists(uploadFolderPath) == false)
+                        {
+                            Directory.CreateDirectory(uploadFolderPath);
+                        }
+
+                        string _Path = Path.Combine(uploadFolderPath, _FileName);
+                        image.SaveAs(_Path);
+
+                        // Lưu file vao database
+                        product.image = _FileName;
+
+                    }
+                }
+
                 db.Entry(product).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");

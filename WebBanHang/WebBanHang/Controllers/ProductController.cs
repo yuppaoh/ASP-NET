@@ -24,5 +24,7 @@ namespace WebBanHang.Controllers
 
             return View();
         }
+
+        
     }
 }
