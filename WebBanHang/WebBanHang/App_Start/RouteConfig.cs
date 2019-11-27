@@ -104,6 +104,14 @@ namespace WebBanHang
               namespaces: new string[] { "WebBanHang.Controller.Backend" }
             );
 
+            // Xóa product - delete
+            routes.MapRoute(
+              name: "admin.products.delete",
+              url: "admin/products/delete/{id}",
+              defaults: new { controller = "Products", action = "Delete" },
+              namespaces: new string[] { "WebBanHang.Controller.Backend" }
+            );
+
 
 
             //Route mat dinh cua trang web

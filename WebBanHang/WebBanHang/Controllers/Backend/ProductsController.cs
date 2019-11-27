@@ -180,19 +180,20 @@ namespace WebBanHang.Controllers.Backend
         {
             if (id == null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);  // Tìm dòng có id thứ mấy
             }
             product product = db.products.Find(id);
             if (product == null)
             {
                 return HttpNotFound();
             }
-            return View(product);
+            ViewBag.sanpham = product;
+            return View("~/Views/Backend/Products/Delete.cshtml", product);
         }
 
         // POST: Products/Delete/5
         [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
+        //[ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
             product product = db.products.Find(id);

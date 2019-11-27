@@ -105,17 +105,68 @@
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.image)
+            <!--@Html.DisplayFor(model => model.image)-->
+            @if (String.IsNullOrEmpty(ViewBag.sanpham.image))  // ProductsController.cs trong backend có: ViewBag.sanpham = product
+            {
+                <img class="bd-placeholder-img card-img-top" width="100%" height="350" src="~/Content/img/no-photo.png">
+            }
+            else
+            {
+                <img class="bd-placeholder-img card-img-top" width="100%" height="350" src="~/UploadedFiles/@ViewBag.sanpham.image">
+            }
+
         </dd>
 
     </dl>
 
-    @using (Html.BeginForm()) {
+    @using (Html.BeginForm("Delete", "Products", FormMethod.Post, new { id = "form-delete-product", @class = "btn btn-danger" }))
+    {
         @Html.AntiForgeryToken()
 
         <div class="form-actions no-color">
-            <input type="submit" value="Delete" class="btn btn-default" /> |
-            @Html.ActionLink("Back to List", "Index")
+            <input type="submit" value="Delete" class="btn btn-default" />
+
         </div>
     }
+    | @Html.ActionLink("Back to List", "Index")
 </div>
+
+@section scripts{
+<script>
+    $(document).ready(function () {
+        $('#form-delete-product').submit(function (e) {
+            e.preventDefault(); // ngăn không cho gửi dữ liệu đến Server -> để mình tự xử lý
+            //alert('Hello, tự xử lý form submit!');
+
+            Swal.fire({
+                title: 'Bạn có chắc chắn xóa?',
+                text: "Không thể khôi phục dữ liệu đã xóa!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, delete it!'
+            }).then((result) => {
+                if (result.value) { // Nếu nhấn Yes
+                    //Tiếp tục submit
+                    $.ajax({
+                        type: "POST",
+                        url: "/admin/products/delete/@ViewBag.sanpham.id",
+                        success: function () {
+                            location.href = "/admin/products"; 
+                        },
+                        error: function () {
+                            Swal.fire({
+                                icon: 'Error',
+                                title: 'Oops...',
+                                text: "Có lỗi xảy ra!",
+                                footer: '<a href="https://nentang.vn">Click vào đây để gọi hỗ trợ'
+                            })
+                        }
+                    })
+                }
+            })
+        });
+    });
+</script>
+    }
