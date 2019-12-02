@@ -78,3 +78,9 @@ E:\MyProgram\Aptech\Subject\32_ASP\ASP-NET\WebBanHang\WebBanHang\bin\EntityFrame
 E:\MyProgram\Aptech\Subject\32_ASP\ASP-NET\WebBanHang\WebBanHang\bin\EntityFramework.SqlServer.dll
 E:\MyProgram\Aptech\Subject\32_ASP\ASP-NET\WebBanHang\WebBanHang\bin\EntityFramework.xml
 E:\MyProgram\Aptech\Subject\32_ASP\ASP-NET\WebBanHang\WebBanHang\bin\EntityFramework.SqlServer.xml
+E:\MyProgram\Aptech\Subject\32_ASP\ASP-NET\WebBanHang\WebBanHang\bin\System.Net.Http.Formatting.dll
+E:\MyProgram\Aptech\Subject\32_ASP\ASP-NET\WebBanHang\WebBanHang\bin\System.Web.Http.dll
+E:\MyProgram\Aptech\Subject\32_ASP\ASP-NET\WebBanHang\WebBanHang\bin\System.Web.Http.WebHost.dll
+E:\MyProgram\Aptech\Subject\32_ASP\ASP-NET\WebBanHang\WebBanHang\bin\System.Net.Http.Formatting.xml
+E:\MyProgram\Aptech\Subject\32_ASP\ASP-NET\WebBanHang\WebBanHang\bin\System.Web.Http.xml
+E:\MyProgram\Aptech\Subject\32_ASP\ASP-NET\WebBanHang\WebBanHang\bin\System.Web.Http.WebHost.xml

@@ -13,11 +13,12 @@ namespace WebBanHang
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
+            
 
             //Route Contact
             // URL:/contact
 
-           routes.MapRoute(
+            routes.MapRoute(
                name: "page.trang-chu",
                url: "",
                defaults: new { controller = "Page", action = "Index" }
@@ -113,6 +114,27 @@ namespace WebBanHang
             );
 
 
+            // API product
+            routes.MapRoute(
+              name: "api.products",
+              url: "api/products",
+              defaults: new { controller = "Api", action = "GetProduct" }
+            );
+
+            // API customer
+            routes.MapRoute(
+              name: "api.customers",
+              url: "api/customers",
+              defaults: new { controller = "Api", action = "GetCustomers" }
+            );
+
+            // API customer
+            routes.MapRoute(
+              name: "api.orders",
+              url: "api/orders",
+              defaults: new { controller = "Api", action = "GetOrders" }
+            );
+
 
             //Route mat dinh cua trang web
             // URL:/
@@ -121,8 +143,6 @@ namespace WebBanHang
                 url: "{controller}/{action}/{id}",
                 defaults: new { controller = "Page", action = "Index", id = UrlParameter.Optional }
             );
-        }
-
-        
+        }       
     }
 }
