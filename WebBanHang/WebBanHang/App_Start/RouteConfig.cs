@@ -135,6 +135,29 @@ namespace WebBanHang
               defaults: new { controller = "Api", action = "GetOrders" }
             );
 
+            // Delete product by API
+            routes.MapRoute(
+              name: "api.products.delete",
+              url: "api/products/{id}/delete",
+              defaults: new { controller = "Api", action = "DeleteProductByApi", id = UrlParameter.Optional }
+            );
+
+            // Create product by API
+            routes.MapRoute(
+              name: "api.products.create",
+              url: "api/products/create",
+              defaults: new { controller = "Api", action = "CreateProductByApi", id = UrlParameter.Optional }
+            );
+
+            // Edit product by API
+            routes.MapRoute(
+              name: "api.products.edit",
+              url: "api/products/{id}/edit",
+              defaults: new { controller = "Api", action = "EditeProductByApi", id = UrlParameter.Optional }
+            );
+
+
+
 
             //Route mat dinh cua trang web
             // URL:/
