@@ -13,7 +13,8 @@ namespace WebBanHang
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
-            
+            // Frontend Default
+            // ----------------------------------------------------------------------------
 
             //Route Contact
             // URL:/contact
@@ -73,7 +74,7 @@ namespace WebBanHang
            );
 
             // BackEnd
-
+            // ----------------------------------------------------------------------------
             routes.MapRoute(
               name: "admin.page.dashboard",
               url: "admin/dashboard",
@@ -81,10 +82,19 @@ namespace WebBanHang
               namespaces: new string[] {"WebBanHang.Controller.Backend"}
             );
 
+            // products/index
             routes.MapRoute(
               name: "admin.products.index",
               url: "admin/products",
               defaults: new { controller = "Products", action = "Index" },
+              namespaces: new string[] { "WebBanHang.Controller.Backend" }
+            );
+
+            // product/detail
+            routes.MapRoute(
+              name: "admin.products.detail",
+              url: "admin/products/detail",
+              defaults: new { controller = "Products", action = "Detail" },
               namespaces: new string[] { "WebBanHang.Controller.Backend" }
             );
 
@@ -113,6 +123,8 @@ namespace WebBanHang
               namespaces: new string[] { "WebBanHang.Controller.Backend" }
             );
 
+            // API
+            // ----------------------------------------------------------------------------
 
             // API product
             routes.MapRoute(
@@ -158,7 +170,8 @@ namespace WebBanHang
 
 
 
-
+            // Frontend Default
+            // ----------------------------------------------------------------------------
             //Route mat dinh cua trang web
             // URL:/
             routes.MapRoute(

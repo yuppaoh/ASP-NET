@@ -116,7 +116,7 @@ namespace WebBanHang.Controllers.Backend
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "id,product_code,product_name,description,standard_cost," +
             "list_price,target_level,reorder_level,minimum_reorder_quantity,quantity_per_unit,discontinued," +
-            "category,image")] product product, string image_oldFile, HttpPostedFileBase image) // HttpPost... để tạo biến image, sau này dùng ở dòng 123 - if (image == null)  
+            "category,image")] product product, string image_oldFile, HttpPostedFileBase image) // HttpPost... để tạo biến image, sau này dùng ở dòng 125 - if (image == null)  
         {
             if (ModelState.IsValid)
             {

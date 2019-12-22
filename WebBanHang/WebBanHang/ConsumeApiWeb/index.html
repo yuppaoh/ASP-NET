@@ -9,8 +9,16 @@
     <title>Test API</title>
 </head>
 <body>
+    <form action="/action_page.php">
+        Country code: <input type="text" name="country_code" pattern="[A-Za-z]{3}" title="Three letter country code">
+        <input type="submit">
+      </form>
+      
     <h1>Test Api</h1>
     <button id="btn" class="btn btn-primary">Request</button>
+
+    <br/><br/>
+    <p>Sau khi click vào btn => nhấn f12 => vào Console xem kết quả!</p>
 
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <!-- <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script> -->
