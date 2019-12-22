@@ -1,0 +1,77 @@
+﻿@model IEnumerable<Exam.EF.Product>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create", null, new { @class = "btn btn-primary" })
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.pro_id)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.pro_name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.quantity)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.pro_price)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.pro_image)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Description)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Category.Cat_Name)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        
+        <td>
+            @Html.DisplayFor(modelItem => item.pro_id)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.pro_name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.quantity)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.pro_price)
+        </td>
+        <td>
+            @if (String.IsNullOrEmpty(item.pro_image))
+            {
+                <img class="bd-placeholder-img card-img-top img-product img-thumbnail" width="100%" height="350" src="~/Content/img/no-photo.png">
+            }
+            else
+            {
+                <img class="bd-placeholder-img card-img-top img-product img-thumbnail" width="100%" height="350" src="~/UploadedFiles/@item.pro_image">
+            }
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Description)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Category.Cat_Name)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id = item.cat_id }) |
+            @Html.ActionLink("Details", "Details", new { id = item.cat_id }) |
+            @Html.ActionLink("Delete", "Delete", new { id = item.cat_id })
+        </td>
+    </tr>
+}
+
+</table>
