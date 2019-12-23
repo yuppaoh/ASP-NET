@@ -142,7 +142,7 @@ namespace Exam.Controllers
 
                 db.Entry(product).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Edit");
             }
             ViewBag.cat_id = new SelectList(db.Categories, "Cat_ID", "Cat_Name", product.cat_id);
             return View(product);
