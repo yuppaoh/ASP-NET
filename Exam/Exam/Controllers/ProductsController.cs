@@ -18,8 +18,9 @@ namespace Exam.Controllers
         // GET: Products
         public ActionResult Index()
         {
-            var products = db.Products.Include(p => p.Category);
-            return View(products.ToList());
+            //var products = db.Products.Include(p => p.Category);
+            //return View(products.ToList());
+            return View("~/Views/Products/Index.cshtml", db.Products.ToList());
         }
 
         // GET: Products/Details/5
@@ -41,7 +42,7 @@ namespace Exam.Controllers
         public ActionResult Create()
         {
             ViewBag.cat_id = new SelectList(db.Categories, "Cat_ID", "Cat_Name");
-            return View();
+            return View("~/Views/Products/Create.cshtml");
         }
 
         // POST: Products/Create
@@ -49,10 +50,42 @@ namespace Exam.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "pro_id,pro_name,quantity,pro_price,pro_image,cat_id,Description")] Product product)
+        public ActionResult Create([Bind(Include = "pro_id,pro_name,quantity,pro_price,pro_image," +
+            "cat_id,Description")] Product product, HttpPostedFileBase pro_image)
         {
             if (ModelState.IsValid)
             {
+                // upload ảnh vao folder UploadFile
+
+                string _FileName = "";
+                string uploadFolderPath = Server.MapPath("~/UploadFile");
+
+                // di chuyển file vào thư mục mong muốn
+                if (pro_image.ContentLength > 0)
+                {
+                    _FileName = Path.GetFileName(pro_image.FileName);
+                    string _FileNameExtension = Path.GetExtension(pro_image.FileName);
+                    if ((_FileNameExtension == ".png" || _FileNameExtension == ".jpg"
+                        || _FileNameExtension == ".jpeg" || _FileNameExtension == ".svg"
+                        ) == false)
+                    {
+                        return View(String.Format("File extension {0} is not acepted, please check agian!", _FileNameExtension));
+                    }
+
+
+                    if (Directory.Exists(uploadFolderPath) == false)
+                    {
+                        Directory.CreateDirectory(uploadFolderPath);
+                    }
+
+                    string _Path = Path.Combine(uploadFolderPath, _FileName);
+                    pro_image.SaveAs(_Path);
+
+                    // Lưu file vao database
+                    product.pro_image = _FileName;
+
+                }
+
                 db.Products.Add(product);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -74,7 +107,6 @@ namespace Exam.Controllers
             {
                 return HttpNotFound();
             }
-            //ViewBag.cat_id = new SelectList(db.Categories, "Cat_ID", "Cat_Name", product.cat_id);
             ViewBag.sanpham = product; // Bo sung
             return View(product);
         }
@@ -92,7 +124,7 @@ namespace Exam.Controllers
                 // --------- Bo sung 1 Start ---------
                 string uploadFolderPath = Server.MapPath("~/UploadFile");
 
-                if (pro_image == null) // Nếu không cập nhật ảnh mới (không chọn file)
+                if (pro_image == null) // Nếu không cập nhật ảnh mới (không up file)
                 {
                     product.pro_image = image_oldFile;  // Giữ nguyên ảnh củ
                 }
@@ -106,7 +138,6 @@ namespace Exam.Controllers
                     }
 
                     // 2. upload ảnh mới
-
                     string _FileName = "";
 
                     // di chuyển file vào thư mục mong muốn
@@ -121,7 +152,6 @@ namespace Exam.Controllers
                             return View(String.Format("File extension {0} is not acepted, please check agian!", _FileNameExtension));
                         }
 
-
                         if (Directory.Exists(uploadFolderPath) == false)
                         {
                             Directory.CreateDirectory(uploadFolderPath);
@@ -132,17 +162,13 @@ namespace Exam.Controllers
 
                         // Lưu file vao database
                         product.pro_image = _FileName;
-
                     }
                 }
-
-
-
                 // --------- Bo sung1  End ---------
 
                 db.Entry(product).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Edit");
+                return RedirectToAction("Index");
             }
             ViewBag.cat_id = new SelectList(db.Categories, "Cat_ID", "Cat_Name", product.cat_id);
             return View(product);

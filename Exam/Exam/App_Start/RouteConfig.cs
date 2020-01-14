@@ -13,12 +13,17 @@ namespace Exam
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
+            // Index of Products
             routes.MapRoute(
                 name: "product",
                 url: "product",
                 defaults: new { controller = "Products", action = "Index" }
             );
 
+
+
+
+            // --------------------------------------------------------------
             // Default
             routes.MapRoute(
                 name: "Default",
