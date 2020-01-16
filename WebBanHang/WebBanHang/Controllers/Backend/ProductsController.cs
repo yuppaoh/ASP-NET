@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Microsoft.WindowsAzure.Storage;
+using Microsoft.WindowsAzure.Storage.Blob;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
@@ -14,6 +16,7 @@ namespace WebBanHang.Controllers.Backend
     public class ProductsController : Controller
     {
         private WebBanHangEntities db = new WebBanHangEntities();
+        public String StorageConnectionString = "DefaultEndpointsProtocol=https;AccountName=hqdata;AccountKey=CgxaGhJQgLLaqNNghR8nPAdwaNHRjjS2465f8p2UnnB3h1cNHaNa3/BXYU+PSyIseJMtyOQ7KdS1Q5SeYrW/xA==;EndpointSuffix=core.windows.net";
 
         // GET: Products
         public ActionResult Index()
@@ -71,14 +74,47 @@ namespace WebBanHang.Controllers.Backend
                         return View(String.Format("File có đuôi {0} không được chấp nhận, vui lòng kiểm tra lại", _FileNameExtension));
                     }
 
-                    string uploadFolderPath = Server.MapPath("~/UploadedFiles");
-                    if (Directory.Exists(uploadFolderPath) == false)
-                    {
-                        Directory.CreateDirectory(uploadFolderPath);
-                    }
+                    // Upload file len folder UploadedFiles (doan code 1)
+                    //--------------------------------------------
 
-                    string _Path = Path.Combine(uploadFolderPath, _FileName);
-                    image.SaveAs(_Path);
+                    //string uploadFolderPath = Server.MapPath("~/UploadedFiles");
+                    //if (Directory.Exists(uploadFolderPath) == false)
+                    //{
+                    //    Directory.CreateDirectory(uploadFolderPath);
+                    //}
+
+                    //--------------------------------------------
+
+                    // Upload file len Storage Azure thay the cho (doan code 1)
+                    //--------------------------------------------
+                    // Create Reference to Azure Storage Account
+                    String strorageconn = StorageConnectionString; // trong App.config co key="StorageConnectionString"
+                    CloudStorageAccount storageacc = CloudStorageAccount.Parse(strorageconn);
+
+                    //Create Reference to Azure Blob
+                    CloudBlobClient blobClient = storageacc.CreateCloudBlobClient();
+
+                    //The next 2 lines create if not exists a container named "democontainer"
+                    CloudBlobContainer container = blobClient.GetContainerReference("uploadfile");  //democontainer la phan vung cho moi shop (vidu)
+                    container.CreateIfNotExists();
+
+                    //The next 7 lines upload the file test.txt with the name DemoBlob on the container "democontainer"
+                    CloudBlockBlob blockBlob = container.GetBlockBlobReference(_FileName);
+                    //using (var filestream = System.IO.File.OpenRead(@"E:\up\azureText.txt")) // file de up len
+                    blockBlob.UploadFromStream(image.InputStream);
+
+                    //--------------------------------------------
+                    //using (var filestream = System.IO.File.OpenRead(@"E:\up\iphone4s.jpg"))
+                    //{
+                    //    blockBlob.UploadFromStream(image.InputStream);
+
+                    //}
+                    //--------------------------------------------
+
+
+                    //string _Path = Path.Combine(uploadFolderPath, _FileName);  // (code 2)
+                    string _Path = Path.Combine(_FileName);     // dong nay thay the cho dong (code 2)
+                    //image.SaveAs(_Path);
 
                     product.image = image.FileName; //lưu tên file để sau này ghép lại với đường dấn, hiện ra trên trang index của product
                 }
@@ -153,14 +189,33 @@ namespace WebBanHang.Controllers.Backend
                             return View(String.Format("File có đuôi {0} không được chấp nhận, vui lòng kiểm tra lại", _FileNameExtension));
                         }
 
-                        
-                        if (Directory.Exists(uploadFolderPath) == false)
-                        {
-                            Directory.CreateDirectory(uploadFolderPath);
-                        }
+                        // ----------------------------------------------
+                        //if (Directory.Exists(uploadFolderPath) == false)
+                        //{
+                        //    Directory.CreateDirectory(uploadFolderPath);
+                        //}
 
-                        string _Path = Path.Combine(uploadFolderPath, _FileName);
-                        image.SaveAs(_Path);
+                        //string _Path = Path.Combine(uploadFolderPath, _FileName);
+                        //image.SaveAs(_Path);
+                        // ----------------------------------------------
+
+                        // Create Reference to Azure Storage Account
+                        String strorageconn = StorageConnectionString;
+                        CloudStorageAccount storageacc = CloudStorageAccount.Parse(strorageconn);
+
+                        //Create Reference to Azure Blob
+                        CloudBlobClient blobClient = storageacc.CreateCloudBlobClient();
+
+                        //The next 2 lines create if not exists a container named "democontainer"
+                        CloudBlobContainer container = blobClient.GetContainerReference("uploadfile");
+                        container.CreateIfNotExists();
+
+                        //The next 7 lines upload the file test.txt with the name DemoBlob on the container "democontainer"
+                        CloudBlockBlob blockBlob = container.GetBlockBlobReference(_FileName);
+                        blockBlob.UploadFromStream(image.InputStream);
+
+                        string _Path = Path.Combine(_FileName);
+                        
 
                         // Lưu file vao database
                         product.image = _FileName;

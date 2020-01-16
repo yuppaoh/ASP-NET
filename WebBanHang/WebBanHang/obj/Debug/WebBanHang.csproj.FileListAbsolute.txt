@@ -84,3 +84,8 @@ E:\MyProgram\Aptech\Subject\32_ASP\ASP-NET\WebBanHang\WebBanHang\bin\System.Web.
 E:\MyProgram\Aptech\Subject\32_ASP\ASP-NET\WebBanHang\WebBanHang\bin\System.Net.Http.Formatting.xml
 E:\MyProgram\Aptech\Subject\32_ASP\ASP-NET\WebBanHang\WebBanHang\bin\System.Web.Http.xml
 E:\MyProgram\Aptech\Subject\32_ASP\ASP-NET\WebBanHang\WebBanHang\bin\System.Web.Http.WebHost.xml
+E:\MyProgram\Aptech\Subject\32_ASP\ASP-NET\WebBanHang\WebBanHang\bin\Microsoft.Azure.KeyVault.Core.dll
+E:\MyProgram\Aptech\Subject\32_ASP\ASP-NET\WebBanHang\WebBanHang\bin\Microsoft.WindowsAzure.Storage.dll
+E:\MyProgram\Aptech\Subject\32_ASP\ASP-NET\WebBanHang\WebBanHang\bin\Microsoft.Azure.KeyVault.Core.xml
+E:\MyProgram\Aptech\Subject\32_ASP\ASP-NET\WebBanHang\WebBanHang\bin\Microsoft.WindowsAzure.Storage.pdb
+E:\MyProgram\Aptech\Subject\32_ASP\ASP-NET\WebBanHang\WebBanHang\bin\Microsoft.WindowsAzure.Storage.xml
